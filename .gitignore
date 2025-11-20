@@ -1,0 +1,52 @@
+Win32/
+__history/
+__recovery/
+# Delphi compilation artifacts
+*.dcu
+*.dcp
+*.bpl
+*.dcuil
+*.obj
+*.res
+*.tds
+*.map
+*.tlb
+*.rsm
+*.identcache
+*.stat
+
+# Executables and libraries
+*.exe
+*.dll
+*.so
+*.dylib
+*.elf
+
+# Project management files
+*.dproj.local
+*.dproj.user
+*.groupproj.local
+*.groupproj.user
+*.cfg
+*.identcache
+
+# Temporary files and backups
+*.~*
+*.bak
+*.old
+*.log
+__history/
+
+# IDE-specific files
+*.local
+*.identcache
+
+# Deployment Manager files (if not used for remote debugging/mobile)
+*.deployproj
+*.deployproj.local
+
+# Visual LiveBindings files (if not using LiveBindings Designer)
+*.vlb
+
+# Diagram Portfolio files (for older Delphi versions)
+*.di
