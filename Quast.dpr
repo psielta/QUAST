@@ -5,7 +5,10 @@ uses
   UFrmPrinc in 'UFrmPrinc.pas' {FrmPrinc},
   Vcl.Themes,
   Vcl.Styles,
-  UFrmSobre in 'Diversos\UFrmSobre.pas' {FrmSobre};
+  UFrmSobre in 'Diversos\UFrmSobre.pas' {FrmSobre},
+  UMigrationManager in 'Migrations\UMigrationManager.pas',
+  FireDAC.Comp.ScriptCommands,
+  FireDAC.Stan.Def;
 
 {$R *.res}
 
