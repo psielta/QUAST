@@ -148,6 +148,7 @@ object FrmPrinc: TFrmPrinc
   Menu = MainMenu1
   Position = poDesktopCenter
   WindowState = wsMaximized
+  OnCreate = FormCreate
   TextHeight = 16
   object Image1: TImage
     Left = 0

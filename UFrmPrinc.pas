@@ -1,4 +1,4 @@
-unit UFrmPrinc;
+﻿unit UFrmPrinc;
 
 interface
 
@@ -20,8 +20,10 @@ type
     FDConnection1: TFDConnection;
     FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink;
     procedure Sobre1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
+    procedure ConfigurarConexaoBanco;
   public
     { Public declarations }
   end;
@@ -34,6 +36,32 @@ implementation
 {$R *.dfm}
 
 uses UFrmSobre;
+
+procedure TFrmPrinc.ConfigurarConexaoBanco;
+var
+  CaminhoBanco: string;
+begin
+  // Obter o caminho do executável e concatenar com o nome do banco
+  CaminhoBanco := ExtractFilePath(ParamStr(0)) + 'quast_database.db';
+
+  // Configurar a conexão
+  FDConnection1.Params.Clear;
+  FDConnection1.Params.Add('Database=' + CaminhoBanco);
+  FDConnection1.Params.Add('DriverID=SQLite');
+  FDConnection1.LoginPrompt := False;
+
+  try
+    FDConnection1.Connected := True;
+  except
+    on E: Exception do
+      ShowMessage('Erro ao conectar ao banco de dados: ' + E.Message);
+  end;
+end;
+
+procedure TFrmPrinc.FormCreate(Sender: TObject);
+begin
+  ConfigurarConexaoBanco;
+end;
 
 procedure TFrmPrinc.Sobre1Click(Sender: TObject);
 begin

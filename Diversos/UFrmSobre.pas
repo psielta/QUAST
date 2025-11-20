@@ -8,8 +8,6 @@ uses
 
 type
   TFrmSobre = class(TForm)
-    Label1: TLabel;
-    Edit1: TEdit;
   private
     { Private declarations }
   public
