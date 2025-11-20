@@ -7,6 +7,7 @@ uses
   Vcl.Styles,
   UFrmSobre in 'Diversos\UFrmSobre.pas' {FrmSobre},
   UMigrationManager in 'Migrations\UMigrationManager.pas',
+  ULogger in 'ULogger.pas',
   FireDAC.Comp.ScriptCommands,
   FireDAC.Stan.Def;
 
