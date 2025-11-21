@@ -1,4 +1,4 @@
--- Migration V001: Schema inicial do sistema
+﻿-- Migration V001: Schema inicial do sistema
 -- Autor: Sistema de Migrations
 -- Data: 2024
 

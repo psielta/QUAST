@@ -1,4 +1,4 @@
--- Migration V002: Criar tabela de provas
+﻿-- Migration V002: Criar tabela de provas
 -- Autor: Sistema de Migrations
 -- Data: 2024
 -- Descrição: Armazena informações sobre provas e exames

@@ -21,9 +21,14 @@ type
     Image1: TImage;
     FDConnection1: TFDConnection;
     FDPhysSQLiteDriverLink1: TFDPhysSQLiteDriverLink;
+    MenuBancas: TMenuItem;
+    MenuAreas: TMenuItem;
+    N1: TMenuItem;
     procedure Sobre1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure VisualizarMigrations;
+    procedure MenuBancasClick(Sender: TObject);
+    procedure MenuAreasClick(Sender: TObject);
   private
     { Private declarations }
     FMigrationManager: TMigrationManager;
@@ -34,8 +39,6 @@ type
     // Métodos utilitários para trabalhar com banco de dados
     procedure ExecSQL(const ASQL: string); overload;
     procedure ExecSQL(const ASQL: string; const AParams: array of Variant); overload;
-    function OpenSQL(const ASQL: string): TClientDataSet; overload;
-    function OpenSQL(const ASQL: string; const AParams: array of Variant): TClientDataSet; overload;
     function ExecuteScalar(const ASQL: string): Variant; overload;
     function ExecuteScalar(const ASQL: string; const AParams: array of Variant): Variant; overload;
     function ExecuteScalarInt(const ASQL: string): Integer; overload;
@@ -82,7 +85,7 @@ implementation
 
 {$R *.dfm}
 
-uses UFrmSobre;
+uses UFrmSobre, UFrmBancasLista, UFrmAreasLista;
 
 procedure TFrmPrinc.ConfigurarConexaoBanco;
 var
@@ -159,6 +162,30 @@ procedure TFrmPrinc.Sobre1Click(Sender: TObject);
 begin
   FrmSobre := TFrmSobre.Create(Self);
   FrmSobre.ShowModal();
+end;
+
+procedure TFrmPrinc.MenuBancasClick(Sender: TObject);
+var
+  Frm: TFrmBancasLista;
+begin
+  Frm := TFrmBancasLista.Create(Self);
+  try
+    Frm.ShowModal;
+  finally
+    Frm.Free;
+  end;
+end;
+
+procedure TFrmPrinc.MenuAreasClick(Sender: TObject);
+var
+  Frm: TFrmAreasLista;
+begin
+  Frm := TFrmAreasLista.Create(Self);
+  try
+    Frm.ShowModal;
+  finally
+    Frm.Free;
+  end;
 end;
 
 procedure TFrmPrinc.VisualizarMigrations;
@@ -242,45 +269,6 @@ begin
       Query.Params[I].Value := AParams[I];
 
     Query.ExecSQL;
-  finally
-    Query.Free;
-  end;
-end;
-
-function TFrmPrinc.OpenSQL(const ASQL: string): TClientDataSet;
-var
-  Query: TFDQuery;
-begin
-  Query := TFDQuery.Create(nil);
-  try
-    Query.Connection := FDConnection1;
-    Query.SQL.Text := ASQL;
-    Query.Open;
-
-    Result := TClientDataSet.Create(nil);
-    Result.Data := Query.Data;
-  finally
-    Query.Free;
-  end;
-end;
-
-function TFrmPrinc.OpenSQL(const ASQL: string; const AParams: array of Variant): TClientDataSet;
-var
-  Query: TFDQuery;
-  I: Integer;
-begin
-  Query := TFDQuery.Create(nil);
-  try
-    Query.Connection := FDConnection1;
-    Query.SQL.Text := ASQL;
-
-    for I := 0 to High(AParams) do
-      Query.Params[I].Value := AParams[I];
-
-    Query.Open;
-
-    Result := TClientDataSet.Create(nil);
-    Result.Data := Query.Data;
   finally
     Query.Free;
   end;

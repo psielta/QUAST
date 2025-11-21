@@ -8,6 +8,10 @@ uses
   UFrmSobre in 'Diversos\UFrmSobre.pas' {FrmSobre},
   UMigrationManager in 'Migrations\UMigrationManager.pas',
   ULogger in 'ULogger.pas',
+  UFrmBancasLista in 'Cadastros\Bancas\UFrmBancasLista.pas' {FrmBancasLista},
+  UFrmBancasEdit in 'Cadastros\Bancas\UFrmBancasEdit.pas' {FrmBancasEdit},
+  UFrmAreasLista in 'Cadastros\AreasConhecimento\UFrmAreasLista.pas' {FrmAreasLista},
+  UFrmAreasEdit in 'Cadastros\AreasConhecimento\UFrmAreasEdit.pas' {FrmAreasEdit},
   FireDAC.Comp.ScriptCommands,
   FireDAC.Stan.Def;
 

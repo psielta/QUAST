@@ -1,4 +1,4 @@
--- Migration V003: Criar tabela de questões
+﻿-- Migration V003: Criar tabela de questões
 -- Autor: Sistema de Migrations
 -- Data: 2024
 -- Descrição: Armazena questões de provas com relacionamento 1:N com provas

@@ -852,6 +852,17 @@ object FrmPrinc: TFrmPrinc
     Top = 24
     object Menu1: TMenuItem
       Caption = 'Cadastros'
+      object MenuBancas: TMenuItem
+        Caption = 'Bancas'
+        OnClick = MenuBancasClick
+      end
+      object MenuAreas: TMenuItem
+        Caption = #193'reas de Conhecimento'
+        OnClick = MenuAreasClick
+      end
+      object N1: TMenuItem
+        Caption = '-'
+      end
       object Sobre1: TMenuItem
         Caption = 'Sobre'
         OnClick = Sobre1Click
