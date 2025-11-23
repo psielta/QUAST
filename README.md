@@ -1,44 +1,64 @@
-# 📚 Quast - Sistema de Gestão de Estudos com IA
+# Quast - Sistema de Gestão de Estudos com IA
 
-## 📋 Sobre o Projeto
+## Sobre o Projeto
 
-**Quast** é um sistema desktop desenvolvido em Delphi para auxiliar estudantes no gerenciamento e resolução de questões de provas e concursos. O sistema combina organização de conteúdo com inteligência artificial para proporcionar uma experiência de aprendizado personalizada e eficiente.
+**Quast** é um sistema desktop desenvolvido em Delphi para auxiliar estudantes no
+gerenciamento e na resolução de questões de provas e concursos. O sistema combina
+organização de conteúdo com inteligência artificial para proporcionar uma experiência
+de aprendizado personalizada e eficiente.
 
-### 🎯 Objetivo
+### Objetivo
+
 Fornecer uma ferramenta completa para estudantes que desejam:
 - Organizar suas questões de estudo
 - Armazenar provas anteriores
 - Receber auxílio inteligente na resolução de problemas
 - Acompanhar seu progresso de aprendizado
 
-## 🚀 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - **Linguagem:** Delphi (Object Pascal)
 - **Banco de Dados:** SQLite
-- **Componentes:** FireDAC para acesso a dados
+- **Acesso a Dados:** FireDAC
 - **Interface:** VCL (Visual Component Library)
-- **Arquitetura:** Sistema de Migrations para versionamento do banco
+- **Arquitetura:** Sistema de migrations para versionamento do banco
 
-## ✨ Funcionalidades Atuais
+## Funcionalidades Atuais
 
 ### Sistema de Migrations
-- ✅ Gerenciamento automático de versões do banco de dados
-- ✅ Criação automática de estrutura inicial
-- ✅ Sistema de backup antes de atualizações
-- ✅ Validação de integridade via checksum
-- ✅ Log detalhado de todas as operações
+- Gerenciamento automático de versões do banco de dados
+- Criação automática da estrutura inicial
+- Backup automático antes de aplicar migrations
+- Validação de integridade via checksum
+- Log detalhado de todas as operações
 
 ### Estrutura Base
-- ✅ Conexão robusta com SQLite
-- ✅ Tabelas de usuários e configurações
-- ✅ Sistema de auditoria integrado
-- ✅ Interface principal com menu de navegação
-- ✅ Estrutura completa de provas e questões
-- ✅ Sistema de resolução com rastreamento de IA
+- Conexão robusta com SQLite
+- Tabelas de usuários e configurações
+- Sistema de auditoria integrado
+- Interface principal com menu de navegação
+- Estrutura base de provas e questões
+- Sistema de resolução com rastreamento de IA
 
-## 🗺️ Roadmap - Próximas Implementações
+### Autenticação e Usuários
 
-### Fase 1: Gestão de Conteúdo 📝
+- Login por **email + senha**, usando hash SHA-256 armazenado em `usuarios.senha_hash`
+- Auditoria de login (sucesso/falha) registrada na tabela `auditoria`
+- Usuário padrão inicial criado automaticamente quando a tabela `usuarios` está vazia:
+  - Email: `admin@quast.local`
+  - Senha: `admin123`
+  - Recomenda-se trocar a senha no primeiro acesso
+- Cadastro de usuários (menu **Cadastros → Usuários**):
+  - Listar, criar, editar (troca opcional de senha) e excluir
+  - Campo `ativo` controla permissão de login
+- Fluxo de inicialização:
+  - App exibe a tela de login antes do form principal
+  - As migrations são executadas e o admin padrão é garantido antes do login
+
+## Roadmap - Próximas Implementações
+
+### Fase 1: Gestão de Conteúdo
+
 - [x] **Estrutura de Banco de Dados Completa**
   - Tabelas de provas com bancas e áreas
   - Tabelas de questões com disciplinas e tags
@@ -55,7 +75,8 @@ Fornecer uma ferramenta completa para estudantes que desejam:
   - Sistema de tags
   - Upload de imagens no enunciado
 
-### Fase 2: Integração com IA 🤖
+### Fase 2: Integração com IA
+
 - [ ] **Assistente Inteligente de Resolução**
   - Análise passo a passo de questões
   - Dicas contextualizadas
@@ -66,7 +87,8 @@ Fornecer uma ferramenta completa para estudantes que desejam:
   - Resumos automáticos de matérias
   - Flashcards inteligentes
 
-### Fase 3: Análise e Progresso 📊
+### Fase 3: Análise e Progresso
+
 - [ ] **Dashboard de Desempenho**
   - Taxa de acertos por matéria
   - Evolução temporal
@@ -77,10 +99,11 @@ Fornecer uma ferramenta completa para estudantes que desejam:
   - Cronograma adaptativo
   - Metas e objetivos
 
-### Fase 4: Recursos Avançados 🎓
+### Fase 4: Recursos Avançados
+
 - [ ] **Simulados Personalizados**
-  - Criação automática baseada em weakpoints
-  - Cronômetro e condições reais de prova
+  - Geração automática baseada em pontos fracos
+  - Cronômetro e simulação de condições reais de prova
   - Correção instantânea com explicações
 
 - [ ] **Modo Colaborativo**
@@ -88,180 +111,164 @@ Fornecer uma ferramenta completa para estudantes que desejam:
   - Grupos de estudo
   - Ranking e gamificação
 
-## 🏗️ Arquitetura do Sistema
+## Arquitetura do Sistema
 
-```
+Estrutura principal do projeto:
+
+```text
 D:\R2\
-├── Quast.dpr                 # Projeto principal
-├── UFrmPrinc.pas             # Form principal
-├── Migrations/               # Sistema de versionamento DB
-│   ├── SQL/                  # Scripts de migrations
-│   └── UMigrationManager.pas # Gerenciador de migrations
-├── Cadastros/                # (Futuros) Forms de cadastro
-├── Diversos/                 # Forms auxiliares
-│   └── UFrmSobre.pas        # Tela sobre
-└── Win32/Win64/             # Builds compiladas
+├── Quast.dpr                     # Projeto principal
+├── UFrmPrinc.pas                 # Form principal
+├── Migrations\                   # Sistema de versionamento do DB
+│   ├── SQL\                      # Scripts de migrations
+│   └── UMigrationManager.pas     # Gerenciador de migrations
+├── Cadastros\                    # Forms de cadastro (bancas, áreas, usuários, etc.)
+├── Diversos\                     # Forms auxiliares (Sobre, etc.)
+└── Win32/Win64\                  # Builds compiladas
 ```
 
-## 💾 Estrutura do Banco de Dados
+## Estrutura do Banco de Dados
 
-### Diagrama de Relacionamentos
+### Visão Geral
 
-```
-┌─────────────────┐
-│ schema_migrations│  (Controle de versões)
-└─────────────────┘
+O banco foi projetado para suportar:
+- Gestão de usuários e configurações
+- Cadastro de bancas, áreas, provas e questões
+- Registro de resoluções e interações com IA
+- Views para análise de desempenho
 
-┌──────────────┐      ┌─────────────────┐      ┌──────────────┐
-│  usuarios    │      │   configuracoes │      │  auditoria   │
-└──────────────┘      └─────────────────┘      └──────────────┘
+### Tabelas do Sistema
 
-┌──────────────┐      ┌─────────────────┐
-│   bancas     │      │ areas_conhecimento│
-└──────┬───────┘      └────────┬────────┘
-       │                       │
-       │    ┌─────────────┐    │
-       └───>│   provas    │<───┘
-            └──────┬──────┘
-                   │ 1
-                   │
-                   │ N
-            ┌──────▼──────┐
-            │  questoes   │
-            └──────┬──────┘
-                   │ 1
-                   │
-                   │ N
-            ┌──────▼──────┐      ┌─────────────────┐
-            │ resolucoes  │─────>│ ia_interacoes   │
-            └─────────────┘      └─────────────────┘
+#### Gestão de Usuários e Sistema
 
-┌──────────────┐      ┌──────────────┐
-│ disciplinas  │      │     tags     │
-└──────────────┘      └──────────────┘
-       │                     │
-       └─────────┬───────────┘
-                 │ N:N
-         ┌───────▼────────┐
-         │ questoes_tags  │
-         └────────────────┘
-```
+- `usuarios`  
+  - Armazena usuários do sistema (login)
+  - Campos principais:
+    - `nome`, `email` (único), `senha_hash`, `ativo`
+    - `criado_em`, `atualizado_em`
+- `configuracoes`  
+  - Configurações globais do sistema
+- `auditoria`  
+  - Log de ações para rastreabilidade (inclui login/logout)
+- `schema_migrations`  
+  - Controle automático de versões do banco
 
-### 📊 Tabelas do Sistema
+#### Cadastro de Provas
 
-#### **Gestão de Usuários e Sistema**
-- `usuarios` - Cadastro de usuários do sistema
-- `configuracoes` - Configurações globais
-- `auditoria` - Log de ações para rastreabilidade
-- `schema_migrations` - Controle automático de versões do banco
+- `bancas`  
+  - Organizadoras de concursos (CESPE, FCC, FGV, etc.)
+  - Contém dados pré-cadastrados
+- `areas_conhecimento`  
+  - Grandes áreas (Matemática, Português, etc.)
+  - Inclui cor associada para visualização
+- `provas`  
+  - Provas completas
+  - Relacionamentos:
+    - `banca_id` → `bancas`
+    - `area_conhecimento_id` → `areas_conhecimento`
 
-#### **Cadastro de Provas**
-- `bancas` - Organizadoras de concursos (CESPE, FCC, FGV, etc.)
-  - 9 bancas pré-cadastradas
-- `areas_conhecimento` - Grandes áreas (Matemática, Português, etc.)
-  - 17 áreas pré-cadastradas com cores
-- `provas` - Armazenamento de provas completas
-  - Relacionamento: `banca_id` → `bancas`
-  - Relacionamento: `area_conhecimento_id` → `areas_conhecimento`
-  - Campos: título, ano, tipo, nível, duração, dificuldade
-  - Suporte para anexar PDF da prova
+#### Banco de Questões
 
-#### **Banco de Questões**
-- `disciplinas` - Subdivisões das áreas (ex: Álgebra, Geometria)
-  - 21 disciplinas pré-cadastradas
-  - Relacionamento: `area_conhecimento_id` → `areas_conhecimento`
-- `tags` - Sistema flexível de categorização
-  - Tags: Fácil, Médio, Difícil, Importante, Revisar, etc.
-- `questoes` - **Questões de provas (1:N com provas)**
-  - Relacionamento: `prova_id` → `provas` (CASCADE)
-  - Relacionamento: `disciplina_id` → `disciplinas`
-  - Campos: enunciado, alternativas (A-E), gabarito, tipo
-  - Suporte para: imagens, explicações, vídeos de resolução
-  - Dificuldade estimada (1-5)
-- `questoes_tags` - Relacionamento N:N entre questões e tags
+- `disciplinas`  
+  - Subdivisões das áreas (ex.: Álgebra, Geometria)
+  - Relacionadas a `areas_conhecimento`
+- `tags`  
+  - Sistema flexível de categorização (Fácil, Médio, Difícil, Revisar, etc.)
+- `questoes`  
+  - Questões de provas
+  - Relacionamentos:
+    - `prova_id` → `provas`
+    - `disciplina_id` → `disciplinas`
+  - Campos:
+    - Enunciado, alternativas (A–E), gabarito, tipo, dificuldade estimada (1–5)
+    - Suporte a mídias (imagens, explicações, vídeos de resolução) na modelagem
+- `questoes_tags`  
+  - Relacionamento N:N entre questões e tags
 
-#### **Sistema de Resolução e IA** 🤖
-- `resolucoes` - Histórico de tentativas do usuário
-  - Relacionamento: `questao_id` → `questoes` (CASCADE)
-  - Relacionamento: `usuario_id` → `usuarios`
-  - Campos: resposta, acertou, tempo gasto
-  - Controle de uso de ajuda IA (sim/não, nível de ajuda)
-- `ia_interacoes` - **Registro de interações com IA**
-  - Relacionamento: `resolucao_id` → `resolucoes` (CASCADE)
-  - Relacionamento: `questao_id` → `questoes` (CASCADE)
-  - Tipos de ajuda: Dica, Conceito, Passo a Passo, Explicação
-  - Armazena: prompt do usuário, resposta da IA
-  - Feedback: se a ajuda foi útil
+#### Sistema de Resolução e IA
 
-#### **Views de Análise** 📈
-- `v_provas_completas` - Listagem de provas com todos os relacionamentos
-- `v_questoes_estatisticas` - Estatísticas por questão
-  - Total de tentativas, percentual de acerto, tempo médio
-  - Quantas vezes usou IA
-- `v_desempenho_disciplina` - Performance por disciplina
-  - Questões respondidas vs disponíveis
-  - Percentual de acerto, tempo médio
-- `v_questoes_revisar` - Questões erradas ou não resolvidas
-  - Prioriza questões com mais erros
-- `v_usuarios_ativos` - Usuários ativos do sistema
+- `resolucoes`  
+  - Histórico de tentativas do usuário
+  - Relacionamentos:
+    - `questao_id` → `questoes`
+    - `usuario_id` → `usuarios`
+  - Campos: resposta, se acertou, tempo gasto, uso de ajuda de IA
+- `ia_interacoes`  
+  - Registro de interações com IA
+  - Relacionamentos:
+    - `resolucao_id` → `resolucoes`
+    - `questao_id` → `questoes`
+  - Campos: tipo de ajuda (dica, conceito, passo a passo, explicação), prompt e resposta da IA, feedback do usuário
 
-### 🔑 Características Técnicas
+#### Views de Análise
+
+- `v_provas_completas` – Listagem de provas com todos os relacionamentos
+- `v_questoes_estatisticas` – Estatísticas por questão  
+  (total de tentativas, percentual de acerto, tempo médio, uso de IA)
+- `v_desempenho_disciplina` – Performance por disciplina
+- `v_questoes_revisar` – Questões erradas ou não resolvidas
+- `v_usuarios_ativos` – Usuários ativos do sistema
+
+## Características Técnicas
 
 - **Integridade Referencial:** FKs com CASCADE onde apropriado
-- **Constraints:** CHECK para validar valores (dificuldade 1-5, gabarito A-E, etc.)
-- **Índices:** Criados automaticamente para otimizar consultas
-- **Timestamps:** Todas tabelas possuem `criado_em` e `atualizado_em`
-- **Soft Delete:** Campo `ativo` para manter histórico
+- **Constraints:** CHECK para validar valores (dificuldade 1–5, gabarito A–E, etc.)
+- **Índices:** Criados para otimizar consultas em campos críticos
+- **Timestamps:** Praticamente todas as tabelas possuem `criado_em` e `atualizado_em`
+- **Soft Delete:** Campo `ativo` em diversas tabelas (incluindo `usuarios`)
 - **Migrations:** Sistema automático de versionamento incremental
 
-### 📦 Dados Pré-Cadastrados
+## Dados Pré-Cadastrados
 
 O sistema já vem com dados iniciais para facilitar o uso:
-- ✅ 9 bancas de concursos e vestibulares
-- ✅ 17 áreas de conhecimento com cores
-- ✅ 21 disciplinas específicas
-- ✅ 13 tags de categorização
-- ✅ Configurações padrão do sistema
+- Bancas de concursos e vestibulares
+- Áreas de conhecimento com cores
+- Disciplinas específicas
+- Tags de categorização
+- Configurações padrão do sistema
 
-### 📜 Migrations Disponíveis
+## Migrations Disponíveis
 
-O sistema possui 3 migrations que configuram toda a estrutura:
+Atualmente o projeto conta com 3 migrations principais:
 
-1. **V001_initial_schema.sql** - Estrutura base
-   - Tabelas de usuários e configurações
-   - Sistema de auditoria
-   - Views de usuários ativos
+1. **V001_initial_schema.sql** – Estrutura base
+   - Tabelas de usuários, configurações e auditoria
+   - View de usuários ativos
 
-2. **V002_create_provas_table.sql** - Sistema de provas
+2. **V002_create_provas_table.sql** – Sistema de provas
    - Tabelas de bancas e áreas de conhecimento
    - Tabela principal de provas
    - Views de provas completas
-   - 9 bancas e 17 áreas pré-cadastradas
+   - Dados pré-cadastrados de bancas e áreas
 
-3. **V003_create_questoes_table.sql** - Sistema de questões
+3. **V003_create_questoes_table.sql** – Sistema de questões
    - Tabelas de disciplinas, tags e questões
    - Sistema de resoluções e interações com IA
    - Views de estatísticas e desempenho
-   - 21 disciplinas e 13 tags pré-cadastradas
+   - Dados pré-cadastrados de disciplinas e tags
 
-## 🔧 Instalação e Configuração
+## Instalação e Configuração
 
 ### Pré-requisitos
+
 - Delphi RAD Studio (10.3 ou superior)
 - Windows 7/8/10/11
-- 100MB de espaço em disco
+- ~100 MB de espaço em disco
 
 ### Como Compilar
 
 1. **Clone o repositório**
+
    ```bash
    git clone git@github.com:psielta/QUAST.git
    cd Quast
    ```
 
-2. **⚠️ IMPORTANTE: Copie as migrations antes de compilar**
+2. **IMPORTANTE: Copie as migrations antes de compilar**
 
-   Execute o script `copy_migrations.bat` para copiar os arquivos SQL para os diretórios de build:
+   Execute o script `copy_migrations.bat` para copiar os arquivos SQL para os diretórios
+   de build:
+
    ```batch
    copy_migrations.bat
    ```
@@ -272,35 +279,40 @@ O sistema possui 3 migrations que configuram toda a estrutura:
    - `Win64\Debug\Migrations\SQL\`
    - `Win64\Release\Migrations\SQL\`
 
-   **📝 Nota:** Sempre que criar uma nova migration (arquivos `.sql`), execute este script novamente antes de compilar/executar!
+   Sempre que criar uma nova migration (`.sql`), execute este script novamente.
 
 3. **Compile o projeto**
+
    - Abra `Quast.dpr` no Delphi
-   - Pressione F9 ou Build → Build Quast
+   - Pressione F9 ou use o menu **Build → Build Quast**
    - O executável será gerado em `Win32\Debug\` ou `Win64\Debug\`
 
 ### Primeira Execução
-- O banco de dados será criado automaticamente em `quast_database.db`
+
+- O banco de dados `quast_database.db` será criado automaticamente na pasta do executável
 - As migrations serão detectadas e aplicadas automaticamente
-- A estrutura completa do banco será configurada
-- Verifique o arquivo `migrations.log` para detalhes da execução
+- Um usuário **admin** padrão será criado se não houver nenhum usuário:
+  - Email: `admin@quast.local`
+  - Senha: `admin123`
+- Na primeira inicialização é exibida a tela de login:
+  - Após autenticação, o formulário principal é aberto
+  - Recomenda-se alterar a senha do admin pelo cadastro de usuários
 
 ### Adicionando Novas Migrations
 
-Quando criar novas migrations SQL:
-
 1. Adicione o arquivo em `Migrations\SQL\` seguindo o padrão `VXXX_descricao.sql`
-2. **Execute `copy_migrations.bat`** para copiar para os diretórios de build
+2. Execute `copy_migrations.bat` para copiar para os diretórios de build
 3. Compile e execute normalmente
-4. A nova migration será aplicada automaticamente
+4. A nova migration será aplicada automaticamente na próxima execução
 
 ## Contribuindo
 
-Projeto de portfolio pessoal, mas feedbacks sao bem-vindos! Abra uma issue ou envie um PR.
+Projeto de portfólio pessoal, mas feedbacks são bem-vindos!  
+Abra uma issue ou envie um PR.
 
-## Licenca
+## Licença
 
-Projeto sob licenca MIT.
+Projeto sob licença MIT.
 
 ## Autor
 
@@ -310,19 +322,5 @@ Mateus Salgueiro
 
 ---
 
-Desenvolvido como parte do meu portfolio de desenvolvimento desktop Delphi.
+Desenvolvido como parte do meu portfólio de desenvolvimento desktop Delphi.
 
-## Autentica\u00e7\u00e3o e Usu\u00e1rios
-
-- Login por email + senha usando hash SHA-256 armazenado em `usuarios.senha_hash`.
-- Auditoria de login (sucesso/falha) registrada na tabela `auditoria`.
-- Usu\u00e1rio padr\u00e3o inicial criado automaticamente quando a tabela `usuarios` est\u00e1 vazia:
-  - Email: `admin@quast.local`
-  - Senha: `admin123`
-  - Recomenda\u00e7\u00e3o: trocar a senha no primeiro acesso.
-- Cadastro de usu\u00e1rios (menu Cadastros \u2192 Usu\u00e1rios):
-  - Listar, criar, editar (troca opcional de senha) e excluir.
-  - Campo `ativo` controla permiss\u00e3o de login.
-- Fluxo de inicializa\u00e7\u00e3o:
-  - App exibe tela de login antes do form principal.
-  - Migrations s\u00e3o executadas e o admin padr\u00e3o \u00e9 garantido antes do login.
