@@ -138,6 +138,24 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Migrations\UMigrationManager.pas"/>
+        <DCCReference Include="ULogger.pas"/>
+        <DCCReference Include="Cadastros\Bancas\UFrmBancasLista.pas">
+            <Form>FrmBancasLista</Form>
+        </DCCReference>
+        <DCCReference Include="Cadastros\Bancas\UFrmBancasEdit.pas">
+            <Form>FrmBancasEdit</Form>
+        </DCCReference>
+        <DCCReference Include="Cadastros\AreasConhecimento\UFrmAreasLista.pas">
+            <Form>FrmAreasLista</Form>
+        </DCCReference>
+        <DCCReference Include="Cadastros\AreasConhecimento\UFrmAreasEdit.pas">
+            <Form>FrmAreasEdit</Form>
+        </DCCReference>
+        <DCCReference Include="UFrmLogin.pas">
+            <Form>FrmLogin</Form>
+        </DCCReference>
+        <DCCReference Include="UAuthManager.pas"/>
+        <DCCReference Include="UAuthUtils.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -311,3 +311,18 @@ Mateus Salgueiro
 ---
 
 Desenvolvido como parte do meu portfolio de desenvolvimento desktop Delphi.
+
+## Autentica\u00e7\u00e3o e Usu\u00e1rios
+
+- Login por email + senha usando hash SHA-256 armazenado em `usuarios.senha_hash`.
+- Auditoria de login (sucesso/falha) registrada na tabela `auditoria`.
+- Usu\u00e1rio padr\u00e3o inicial criado automaticamente quando a tabela `usuarios` est\u00e1 vazia:
+  - Email: `admin@quast.local`
+  - Senha: `admin123`
+  - Recomenda\u00e7\u00e3o: trocar a senha no primeiro acesso.
+- Cadastro de usu\u00e1rios (menu Cadastros \u2192 Usu\u00e1rios):
+  - Listar, criar, editar (troca opcional de senha) e excluir.
+  - Campo `ativo` controla permiss\u00e3o de login.
+- Fluxo de inicializa\u00e7\u00e3o:
+  - App exibe tela de login antes do form principal.
+  - Migrations s\u00e3o executadas e o admin padr\u00e3o \u00e9 garantido antes do login.

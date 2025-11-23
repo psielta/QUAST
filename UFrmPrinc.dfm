@@ -860,6 +860,10 @@ object FrmPrinc: TFrmPrinc
         Caption = #193'reas de Conhecimento'
         OnClick = MenuAreasClick
       end
+      object MenuUsuarios: TMenuItem
+        Caption = 'Usu'#225'rios'
+        OnClick = MenuUsuariosClick
+      end
       object N1: TMenuItem
         Caption = '-'
       end

@@ -11,7 +11,7 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.VCLUI.Wait,
   Data.DB, FireDAC.Comp.Client, FireDAC.Stan.ExprFuncs,
   FireDAC.Phys.SQLiteWrapper.Stat, FireDAC.Phys.SQLiteDef, FireDAC.Phys.SQLite,
-  UMigrationManager, Datasnap.DBClient, FireDAC.Stan.Param, ULogger;
+  UMigrationManager, Datasnap.DBClient, FireDAC.Stan.Param, ULogger, UAuthManager;
 
 type
   TFrmPrinc = class(TForm)
@@ -29,9 +29,11 @@ type
     procedure VisualizarMigrations;
     procedure MenuBancasClick(Sender: TObject);
     procedure MenuAreasClick(Sender: TObject);
+    procedure MenuUsuariosClick(Sender: TObject);
   private
     { Private declarations }
     FMigrationManager: TMigrationManager;
+    FCurrentUser: TAuthUser;
     procedure ConfigurarConexaoBanco;
     procedure ExecutarMigrations;
   public
@@ -76,6 +78,7 @@ type
     function ConfirmYesNoCancel(const AFormat: string; const AArgs: array of const): Integer; overload;
     procedure ShowMessage(const AMessage: string); overload;
     procedure ShowMessage(const AFormat: string; const AArgs: array of const); overload;
+    procedure ApplyAuthenticatedUser(const AUser: TAuthUser);
   end;
 
 var
@@ -85,7 +88,7 @@ implementation
 
 {$R *.dfm}
 
-uses UFrmSobre, UFrmBancasLista, UFrmAreasLista;
+uses UFrmSobre, UFrmBancasLista, UFrmAreasLista, UFrmUsuariosLista;
 
 procedure TFrmPrinc.ConfigurarConexaoBanco;
 var
@@ -181,6 +184,18 @@ var
   Frm: TFrmAreasLista;
 begin
   Frm := TFrmAreasLista.Create(Self);
+  try
+    Frm.ShowModal;
+  finally
+    Frm.Free;
+  end;
+end;
+
+procedure TFrmPrinc.MenuUsuariosClick(Sender: TObject);
+var
+  Frm: TFrmUsuariosLista;
+begin
+  Frm := TFrmUsuariosLista.Create(Self);
   try
     Frm.ShowModal;
   finally
@@ -517,6 +532,13 @@ end;
 procedure TFrmPrinc.ShowMessage(const AFormat: string; const AArgs: array of const);
 begin
   ShowMessage(Format(AFormat, AArgs));
+end;
+
+procedure TFrmPrinc.ApplyAuthenticatedUser(const AUser: TAuthUser);
+begin
+  FCurrentUser := AUser;
+  if FCurrentUser.Nome <> '' then
+    Caption := Format('Quast - %s', [FCurrentUser.Nome]);
 end;
 
 end.
