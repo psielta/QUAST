@@ -14,6 +14,8 @@ uses
   UFrmBancasEdit in 'Cadastros\Bancas\UFrmBancasEdit.pas' {FrmBancasEdit},
   UFrmAreasLista in 'Cadastros\AreasConhecimento\UFrmAreasLista.pas' {FrmAreasLista},
   UFrmAreasEdit in 'Cadastros\AreasConhecimento\UFrmAreasEdit.pas' {FrmAreasEdit},
+  UFrmProvasLista in 'Cadastros\Provas\UFrmProvasLista.pas' {FrmProvasLista},
+  UFrmProvasEdit in 'Cadastros\Provas\UFrmProvasEdit.pas' {FrmProvasEdit},
   UFrmUsuariosLista in 'Cadastros\Usuarios\UFrmUsuariosLista.pas' {FrmUsuariosLista},
   UFrmUsuariosEdit in 'Cadastros\Usuarios\UFrmUsuariosEdit.pas' {FrmUsuariosEdit},
   UFrmLogin in 'UFrmLogin.pas' {FrmLogin},

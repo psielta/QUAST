@@ -24,12 +24,14 @@ type
     MenuBancas: TMenuItem;
     MenuAreas: TMenuItem;
     N1: TMenuItem;
+    MenuProvas: TMenuItem;
     procedure Sobre1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure VisualizarMigrations;
     procedure MenuBancasClick(Sender: TObject);
     procedure MenuAreasClick(Sender: TObject);
     procedure MenuUsuariosClick(Sender: TObject);
+    procedure MenuProvasClick(Sender: TObject);
   private
     { Private declarations }
     FMigrationManager: TMigrationManager;
@@ -88,7 +90,7 @@ implementation
 
 {$R *.dfm}
 
-uses UFrmSobre, UFrmBancasLista, UFrmAreasLista, UFrmUsuariosLista;
+uses UFrmSobre, UFrmBancasLista, UFrmAreasLista, UFrmUsuariosLista, UFrmProvasLista;
 
 procedure TFrmPrinc.ConfigurarConexaoBanco;
 var
@@ -184,6 +186,18 @@ var
   Frm: TFrmAreasLista;
 begin
   Frm := TFrmAreasLista.Create(Self);
+  try
+    Frm.ShowModal;
+  finally
+    Frm.Free;
+  end;
+end;
+
+procedure TFrmPrinc.MenuProvasClick(Sender: TObject);
+var
+  Frm: TFrmProvasLista;
+begin
+  Frm := TFrmProvasLista.Create(Self);
   try
     Frm.ShowModal;
   finally

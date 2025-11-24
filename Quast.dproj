@@ -151,6 +151,18 @@
         <DCCReference Include="Cadastros\AreasConhecimento\UFrmAreasEdit.pas">
             <Form>FrmAreasEdit</Form>
         </DCCReference>
+        <DCCReference Include="Cadastros\Provas\UFrmProvasLista.pas">
+            <Form>FrmProvasLista</Form>
+        </DCCReference>
+        <DCCReference Include="Cadastros\Provas\UFrmProvasEdit.pas">
+            <Form>FrmProvasEdit</Form>
+        </DCCReference>
+        <DCCReference Include="Cadastros\Usuarios\UFrmUsuariosLista.pas">
+            <Form>FrmUsuariosLista</Form>
+        </DCCReference>
+        <DCCReference Include="Cadastros\Usuarios\UFrmUsuariosEdit.pas">
+            <Form>FrmUsuariosEdit</Form>
+        </DCCReference>
         <DCCReference Include="UFrmLogin.pas">
             <Form>FrmLogin</Form>
         </DCCReference>

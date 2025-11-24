@@ -64,9 +64,9 @@ Fornecer uma ferramenta completa para estudantes que desejam:
   - Tabelas de questões com disciplinas e tags
   - Sistema de migrations implementado
 
-- [ ] **Interface de Cadastro de Provas**
+- [x] **Interface de Cadastro de Provas**
   - Formulário para adicionar/editar provas
-  - Seleção de banca e área de conhecimento
+  - Seleção de banca e área de conhecimento / Cores
   - Upload de PDF da prova
 
 - [ ] **Interface de Cadastro de Questões**

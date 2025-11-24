@@ -856,6 +856,10 @@ object FrmPrinc: TFrmPrinc
         Caption = 'Bancas'
         OnClick = MenuBancasClick
       end
+      object MenuProvas: TMenuItem
+        Caption = 'Provas'
+        OnClick = MenuProvasClick
+      end
       object MenuAreas: TMenuItem
         Caption = #193'reas de Conhecimento'
         OnClick = MenuAreasClick
